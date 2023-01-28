@@ -125,9 +125,9 @@ You have to put this on the app at 60 minute intervals to refresh the token.
 
 ```js
 setInterval(() => {
-   drive.GoogleDrive.refreshAccessToken((error, token) => {
+   drive.AuthClient.refreshAccessToken((error, token) => {
          if (!error) {
-            drive.GoogleDrive.setCredentials({
+            drive.AuthClient.setCredentials({
                refresh_token: token.refresh_token,
                access_token: token.access_token
             })
