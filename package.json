@@ -1,0 +1,32 @@
+{
+  "name": "@neoxr/google-drive",
+  "version": "1.0.0",
+  "description": "Node.js library to access Google Drive's API.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/neoxr/google-drive.git"
+  },
+  "keywords": [
+    "node-drive",
+    "google-drive-api",
+    "gdrive",
+    "gdeive-api"
+  ],
+  "author": "Wildan Izzudin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/neoxr/google-drive/issues"
+  },
+  "homepage": "https://github.com/neoxr/google-drive#readme",
+  "dependencies": {
+    "googleapis": "^92.0.0",
+    "mime-types": "^2.1.34",
+    "moment-timezone": "^0.5.34",
+    "path":"~0.12.7",
+    "readline": "^1.3.0"
+  }
+}
