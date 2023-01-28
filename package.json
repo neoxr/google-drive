@@ -1,6 +1,6 @@
 {
   "name": "@neoxr/google-drive",
-  "version": "1.0.1-rc",
+  "version": "1.0.1-beta",
   "description": "Node.js library to access Google Drive's API.",
   "main": "index.js",
   "scripts": {

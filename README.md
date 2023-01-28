@@ -71,7 +71,7 @@ drive.getFile('https://drive.google.com/file/d/1hzgrW1rWCvfNmE2CYKov2z8zmzOzSGfq
    if (!res.status) {
       console.log('Error!')
    } else {
-      fs.writeFileSync('./video.mp4', Buffer.from(res.data.chunk))
+      fs.writeFileSync(res.data.name, Buffer.from(res.data.chunk))
       console.log('File downloaded!')
    }
 })
