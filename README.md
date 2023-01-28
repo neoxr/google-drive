@@ -119,5 +119,23 @@ const createPermissions = async (drive, fileId) => {
 }
 ```
 
+### Important
+
+You have to put this on the app at 60 minute intervals to refresh the token.
+
+```js
+setInterval(() => {
+   drive.GoogleDrive.refreshAccessToken((error, token) => {
+         if (!error) {
+            drive.GoogleDrive.setCredentials({
+               refresh_token: token.refresh_token,
+               access_token: token.access_token
+            })
+         })
+   }
+   else console.log(error)
+})
+```
+
 ### 乂  License
 Copyright (c) 2022 Neoxr . Licensed under the [GNU GPLv3](https://github.com/neoxr/google-drive/blob/master/LICENSE)
