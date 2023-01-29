@@ -53,6 +53,50 @@ module.exports = (credentials_path, token_path) => {
          })
 
          /**
+          * refresh access token
+          * @returns
+          */
+         refreshAccessToken = () => {
+            oAuth2Client.refreshAccessToken((error, token) => {
+               if (error) return error
+               oAuth2Client.setCredentials({
+                  refresh_token: token.refresh_token,
+                  access_token: token.access_token
+               })
+            })
+         }
+         
+         /**
+          * fetch account information
+          * @returns 
+          */
+         about = () => {
+            return new Promise(async resolve => {
+               try {
+                  const response = await this.GoogleDrive.about.get({
+                     fields: '*'
+                  })
+                  if (response.status != 200) return resolve({
+                     creator: global.creator,
+                     status: false
+                  })
+                  resolve({
+                     creator: global.creator,
+                     status: true,
+                     data: response.data
+                  })
+               } catch (error) {
+                  console.log(error)
+                  resolve({
+                     creator: global.creator,
+                     status: false,
+                     msg: error.message
+                  })
+               }
+            })
+         }
+
+         /**
           * check if folder is exists in drive
           * @param {string} name folder name 
           * @returns 
@@ -177,7 +221,7 @@ module.exports = (credentials_path, token_path) => {
                }
             })
          }
-         
+
          /**
           * get file list form google drive
           * @param {Object} options
@@ -237,6 +281,39 @@ module.exports = (credentials_path, token_path) => {
                      creator: global.creator,
                      status: true,
                      data: response.data
+                  })
+               } catch (error) {
+                  resolve({
+                     creator: global.creator,
+                     status: false,
+                     msg: error.message
+                  })
+               }
+            })
+         }
+
+         /**
+          * delete file
+          * @param {String} url
+          * @returns 
+          */
+         deleteFile = (url) => {
+            return new Promise(async resolve => {
+               try {
+                  const response = await this.GoogleDrive.files.delete({
+                     fileId: url.split('/')[5],
+                     supportsAllDrives: true
+                  })
+                  if (response.status == 404) return resolve({
+                     creator: global.creator,
+                     status: false
+                  })
+                  resolve({
+                     creator: global.creator,
+                     status: true,
+                     data: {
+                        id: url.split('/')[5]
+                     }
                   })
                } catch (error) {
                   resolve({

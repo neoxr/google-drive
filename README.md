@@ -51,6 +51,12 @@ const drive = new(Authorize('./path/credentials.json', './path/token.json'))
 console.log(drive)
 ```
 
+### Show Account Information
+
+```js
+drive.about().then(res => console.log(res))
+```
+
 ### Check Folder Exists
 
 ```js
@@ -61,6 +67,17 @@ drive.checkFolderExists('folder_name').then(res => console.log(res))
 
 ```js
 drive.createFolder('my_new_folder').then(res => console.log(res))
+```
+
+### Show File Lists
+
+```js
+drive.fileList().then(res => console.log(res))
+
+// filter by mimeType
+drive.fileList({
+   q: "mimeType='video/mp4'"
+}).then(res => console.log(res))
 ```
 
 ### Download File
@@ -77,18 +94,6 @@ drive.getFile('https://drive.google.com/file/d/1hzgrW1rWCvfNmE2CYKov2z8zmzOzSGfq
 })
 ```
 
-### Show File List
-
-```js
-drive.fileList().then(res => console.log(res))
-
-// filter by mimeType
-drive.fileList({
-   q: "mimeType='video/mp4'"
-}).then(res => console.log(res))
-
-```
-
 ### Upload File
 
 ```js
@@ -97,6 +102,12 @@ const Buffer = fs.readFileSync('./path/video.mp4')
 // Example Folder : https://drive.google.com/drive/folders/1-hTAMXNpTS0o_RNSKAtUEyJm3fGzwYUy
 const folderId = '1-hTAMXNpTS0o_RNSKAtUEyJm3fGzwYUy'
 drive.uploadFile(Buffer, folderId).then(res => console.log(res))
+```
+
+### Delete File
+
+```js
+drive.deleteFile('https://drive.google.com/file/d/1hzgrW1rWCvfNmE2CYKov2z8zmzOzSGfq/view?usp=drivesdk').then(res => console.log(res))
 ```
 
 ### Create Function by Docs
@@ -121,21 +132,13 @@ const createPermissions = async (drive, fileId) => {
 
 ### Important
 
-You have to put this on the app at 60 minute intervals to refresh the token.
+You have to put this on the app at 60 minutes intervals to refresh the token.
 
 ```js
 setInterval(() => {
-   drive.AuthClient.refreshAccessToken((error, token) => {
-         if (!error) {
-            drive.AuthClient.setCredentials({
-               refresh_token: token.refresh_token,
-               access_token: token.access_token
-            })
-         })
-   }
-   else console.log(error)
-})
+   drive.refreshAccessToken()
+}, 3600000) 
 ```
 
-### 乂  License
+### License
 Copyright (c) 2022 Neoxr . Licensed under the [GNU GPLv3](https://github.com/neoxr/google-drive/blob/master/LICENSE)

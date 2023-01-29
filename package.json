@@ -1,7 +1,7 @@
 {
   "name": "@neoxr/google-drive",
-  "version": "1.0.3-beta",
-  "description": "Node.js library to access Google Drive's API.",
+  "version": "1.0.4",
+  "description": "Node.js library to access Google Drive's API V3",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -14,7 +14,8 @@
     "node-drive",
     "google-drive-api",
     "gdrive",
-    "gdeive-api"
+    "gdrive-api",
+    "gdrive-api-v3",  
   ],
   "author": "Wildan Izzudin",
   "license": "ISC",
