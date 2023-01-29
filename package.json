@@ -15,7 +15,7 @@
     "google-drive-api",
     "gdrive",
     "gdrive-api",
-    "gdrive-api-v3",  
+    "gdrive-api-v3"
   ],
   "author": "Wildan Izzudin",
   "license": "ISC",
